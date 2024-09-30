@@ -24,14 +24,15 @@ class TuringMachine():
         self._current_head = 0
         self._ifhalt = False
         self._step_counter = 0
+        # add an initial state if not given by the user
         if 'q0' not in self._states:
             self._states['q0'] = 'initial state'
+        # add a blank symbol if not given by the user
         if '' not in self._alphabet:
             self._alphabet.append('')
         
     def run_one_step(self):
         """run the TM for one step. 
-
         Check before running: if transition function not defined, then halt.
         Check when running: if the head bumps into the left boundary, then halt.
 
@@ -41,6 +42,8 @@ class TuringMachine():
         print('State: ', self._current_state, end = '\n')
         print('Head: ', self._current_head, end = '\n')
         print('On tape: ', self._tape, end = '\n')
+        # read symbol from current head 
+        # If current head not on the tape list, expand the list
         symbol_read = ''
         if self._current_head < len(self._tape):
             symbol_read = self._tape[self._current_head]
